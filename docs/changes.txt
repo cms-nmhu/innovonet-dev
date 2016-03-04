@@ -1,0 +1,219 @@
+
+* * * * * * * * * * * * * * *
+  Kit-Catalogue Change Log
+* * * * * * * * * * * * * * *
+
+
+This file contains the Kit-Catalogue recent change log.  Any notable updates,
+changes and improvements to the system will be detailed in here for the most
+recent versions of the software.
+
+
+
+--------------------------------------------------------------------------------
+v2.0.8   (released 11-07-2014)
+
+
+== API
+
+Added basic support for retrieving categories via the API.
+Added support for items with images at absolute URLs (if an item's image starts "http:" it will be used as is).
+Added searching items with an Organisational Unit ID or name.
+Improved RDF API removing unnecesary XML entries for unused contacts.
+
+
+== General
+
+Improved the installation wizard to check for the presence of the .htaccess file.
+Added option to disable custodian email links for authenticated users when enquiry button is enabled. (config 'enquiry.email_links')
+Fixed the broken links caused by entity names containing slash characters.
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.7  (limited release)
+
+
+== Security
+
+Added Shibboleth Single Sign-On options for authentication. (config 'signin.shibboleth___' and 'shib.___')
+
+
+== Admin
+
+Added extra error checking for image resizing when editing an item.
+
+
+== API
+
+Added support for retrieving a single item.
+Added searching items with a tag.
+Added support for linking a category to a URI in an external taxonomy.
+RDF output now available (aligned with N8 linked data spec).
+
+
+== General
+
+Added all available data download formats to the permalink item records (CSV, JSON, RDF, etc).
+Fixed an error blocking database upgrades from some v1.0.x installations.
+Fixed an error in the upgrade process where existing department permissions would not convert to OU permissions properly.
+Fixed areas where field_view settings were not applied.
+Fixed an error where changes to the "disposed of" field would not save.
+Fixed minor ECL library bugs.
+Fixed minor styling issues.
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.4  (release 04-06-2013)
+
+
+== Config
+
+Added 'browse.prioritise_facilities' setting to control whether facility items will be listed first in browse results.
+Added 'search.prioritise_facilities' setting to control whether facility items will be listed first in search results.
+Added 'menu.order' setting to control the order of items in the main menu.
+
+
+== General
+
+Added item's OU is set accordingly when adding a new item from an OU listing page.
+Added HTML class to parent-items in lists (is_parent).
+
+Fixed an error in the browsing page which would hide public items from authenticated users.
+Fixed access permission problems for OU-Admin roles.
+Fixed minor typo errors in the admin area.
+Fixed selected category tick boxes being cleared when an error prevents a new item from saving.
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.3  (released 02-05-2013)
+
+
+== General
+
+Fixed an issue with the installation wizard which caused the database installation to fail on some PHP-MySQL configurations. 
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.2  (limited release)
+
+
+== Config
+
+Added layout.signin_prompt setting to control the message shown to unauthenticated users.
+
+
+== General
+
+Fixed an incorrect link to the old department section that should point to the new OU section.
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.1  (released 23-04-2013)
+
+
+== Administration
+
+Fixed CSV importer not reading custom field data.
+
+
+== General
+
+Improved display of manufacturer website link when no manufacturer name has been given. 
+
+
+
+--------------------------------------------------------------------------------
+v.2.0.0  (released 16-04-2013)
+
+
+IMPORTANT: Kit-Catalogue now uses a new upgrade process.
+When you have applied the updated code files you MUST run the upgrade wizard at: http://<your-catalogue>/install/
+
+See /install/readme.txt for more information. 
+
+By default, Kit-Catalogue now uses the MySQLi extension for database access.  If you want to keep using the older
+and soon to be deprecated, Mysql extension, add $config['db.use_mysqli'] = false; to your local config.
+
+
+== Security
+
+Fixed user permissions not being deleted when a user was removed in the administration area. 
+Fixed HTTPS not being used for CSS/javascript files, if user visited a HTTPS url without being logged in.
+Fixed IE8 not downloading CSV files when browsing over HTTPS.  
+Fixed titles of internal-only child items appearing on parent item records (access to the actual items was still blocked).  
+Fixed AJAX calls not using HTTPS when required.
+
+
+== Administration
+
+Added new "embedded content" field to items, allowing direct inclusion of youtube videos, etc.
+Added new "link" resources to items.
+Added new organisational structure admin to replace organisation/department fields.
+Added new organisational unit field to item records.
+Added ability to create a new user and assign their password in one go.
+Added inventory report builder.
+Added item editor functionality, so non-custodians can be given editing rights to individual items.
+
+Changed the item edit page to move mandatory fields nearer the top.
+Changed the Model field to be optional.
+Changed the title and manufacturer fields to be semi-mandatory (at least one must be filled).
+
+Fixed the importer so it will now clean up its old temporary files.
+
+Improved the importer to accept all item fields and detect/correct column re-shuffles in CSV files.
+Improved the exporter to work around Excel having problems when opening CSV files with fields starting with punctuation characters. 
+
+
+== API
+
+CSV output now available.
+XML output now available.
+
+
+== Config
+
+Added 'import.date_format_mdy' setting to control whether the importer should use US style dates.
+Added 'layout.date_format_report' setting to control the formatting of dates in the report builder.
+Added 'item.image.max_width' and 'item.image.max_height' settings to control auto-resizing of uploaded images.
+Added 'item.allow_embedded_content' setting to control whether you can add/view an item's embedded content like YouTube videos.
+Added 'search.include_ou' and 'search.include_ou_descendents' to control search results from hits on organisational unit names.
+Added 'menu.__' settings to control which menus are available and how they are labelled.
+Added 'help.__' settings to control what online help is available to administrators.
+Added 'admin.__' settings to control the editing of items and "editor" users.
+Added 'db.use_mysqli' setting to toggle using mysqli or the older mysql extension (IMPORTANT: this defaults to using mysqli).
+
+Removed 'app.items_www' setting as it is no longer required.
+Removed 'app.api_www' setting as it is no longer required.
+Removed 'search.include_departments' setting as it is no longer required.
+
+
+== General
+
+Added reCAPTCHA option to enquiry forms to combat spam (config 'enquiry.use_recaptcha' and 'recaptcha.__' section)
+Added setting to log all enquiry form submissions - enabled by default (config: 'enquiry.log').
+Added more language override options.
+Added a "Facilities" menu, which shows items that contain other items - disabled by default (config: 'menu.facility.enabled').
+Added a "Tags" menu, which shows items by tag - disabled by default (config: 'menu.tag.enabled').
+Added field view configuration, for controlling which fields are visible on your catalogue front-end website (ignored by API).
+Added item's ID number to detail page.
+Added ID number field to the item search.
+
+Changed the default label for an item's files to "resources".
+Changed the MySQL implementation to use the MySQLi extension instead of the original, and soon to be deprecated, MySQL extension. 
+
+Fixed minor typo errors in the admin area.
+Fixed organisation logo not linking to organisational website (config 'org.www').
+Fixed searching with the common, but unneccesary, wildcard characters '*' and '%' returning no results.
+Fixed searching using a single character using all available memory for results.  Minimum search length is now 2 characters.
+Fixed wikicode fields not showing lines beginning with a zero character, '0'.
+
+Improved the search system generally.
+Improved the installation and upgrade process.
+Improved the standardisation of URL formats across the catalogue.
+
+

@@ -1,0 +1,22 @@
+<?php
+$this->router()->layout(null);
+ob_end_clean();
+ini_set('zlib.output_compression', 'Off');
+
+
+$basename = basename($this->filename);
+
+$ttl = 604800;   // 604800 seconds = 1 week
+
+// IE 8 over HTTPS fix
+header("Cache-Control: private, max-age=15");
+header("Pragma: ");
+
+header("Cache-Control: maxage={$ttl}");
+header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $ttl) . ' GMT');
+header('Content-Type: '.$this->mime_type);
+
+readfile($this->filename);
+exit();
+
+
